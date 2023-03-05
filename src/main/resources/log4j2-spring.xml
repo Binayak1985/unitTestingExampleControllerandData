@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+		</Property>
+	</Properties>
+	<Appenders>
+		 <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+		<!-- <PatternLayout	pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" /> -->
+		
+		<SplunkHttp name="splunkhttp" url="http://localhost:9088"
+			token="292e750e-61bc-4c5e-9d5f-5d71224334c2" host="localhost"
+			index="unittestingexamplecontrolleranddata_api_dev" type="raw"
+			source="http-event-logs" sourcetype="log4j" messageFormat="text"
+			disableCertificateValidation="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</SplunkHttp>
+		<!-- </Console> -->
+	</Appenders>
+
+	<Loggers>
+		<Root level="info" >
+		<AppenderRef ref="console"/>
+		<AppenderRef ref="splunkhttp" /> 
+		</Root>
+		<Logger name="com.splunkhttp" level="info">
+			 <AppenderRef ref="console"/>
+			 <AppenderRef ref="splunkhttp" /> 
+		</Logger>
+
+	</Loggers>
+
+</Configuration>
