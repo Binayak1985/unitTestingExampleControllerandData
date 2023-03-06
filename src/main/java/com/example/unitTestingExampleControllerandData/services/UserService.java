@@ -37,7 +37,7 @@ public class UserService {
 	{
 		log.debug("calling getAllUsers");
 		
-		return new Users("Vinny",37, getDetails(id));
+		return new Users("Vinny",id, getDetails(id));
 //		return dao.getAllUsers();
 	}
 	
