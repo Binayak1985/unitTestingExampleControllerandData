@@ -23,6 +23,7 @@ import com.example.unitTestingExampleControllerandData.entity.Users;
 import com.example.unitTestingExampleControllerandData.services.UserService;
 import com.example.unitTestingExampleControllerandDatacontroller.controller.UserController;
 
+//to use mockito annotations we need to use @ExtendWith(MockitoExtension.class)
 @ExtendWith(MockitoExtension.class)
 
 public class UserControllerTest {
